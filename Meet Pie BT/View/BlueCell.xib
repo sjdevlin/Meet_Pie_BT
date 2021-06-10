@@ -80,11 +80,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="cellFrequency" destination="gVE-yG-8r5" id="9uf-7Z-RGt"/>
+                <outlet property="cellAngle" destination="cc0-4i-UDN" id="Tgj-iz-h31"/>
+                <outlet property="cellFreq" destination="gVE-yG-8r5" id="Ijw-eX-rOS"/>
+                <outlet property="cellMemNum" destination="WNp-yg-C9X" id="XnK-zh-Yej"/>
                 <outlet property="cellNumTurns" destination="VHf-2a-h6F" id="KnF-cE-BuW"/>
                 <outlet property="cellTalking" destination="ww4-Lt-ZtU" id="41Q-WW-SOS"/>
                 <outlet property="cellTotalTalk" destination="Lu1-UP-ANb" id="Mv3-7k-ud7"/>
-                <outlet property="mem" destination="WNp-yg-C9X" id="GDi-wQ-GGe"/>
             </connections>
             <point key="canvasLocation" x="74" y="69"/>
         </tableViewCell>

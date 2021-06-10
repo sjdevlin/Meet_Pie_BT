@@ -9,17 +9,17 @@ import Foundation
 
 struct MessageStructure: Decodable {
 
-    var    timeStamp: Int = 0
-    var    totalMeetingTime: Int = 0
-    var    message: [Main] = []
+//    var    timeStamp: Int = 0
+    var    tMT: Int = 0
+    var    m: [Main] = []
 
     struct Main: Decodable {
-        var memNum: Int = 0
-        var angle: Int = 0
-        var talking: Int = 0
-        var numTurns: Int = 0
-        var freq: Int = 0
-        var totalTalk: Int = 0
+        var mN: Int = 0
+        var a: Int = 0
+        var t: Int = 0
+        var nT: Int = 0
+        var f: Int = 0
+        var tT: Int = 0
     }
 }
 

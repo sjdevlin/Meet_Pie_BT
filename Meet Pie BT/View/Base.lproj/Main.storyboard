@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Meet Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BX-S6-Vpd">
-                                <rect key="frame" x="374" y="694" width="73" height="21"/>
+                                <rect key="frame" x="390" y="716" width="190" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -42,8 +42,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="meet" destination="8BX-S6-Vpd" id="LzN-st-psH"/>
-                        <outlet property="t" destination="YdE-Hy-cpb" id="R01-NS-WAp"/>
+                        <outlet property="MeetTableView" destination="YdE-Hy-cpb" id="uc7-Yw-gMm"/>
+                        <outlet property="meetingTimeLabel" destination="8BX-S6-Vpd" id="7Hr-o4-rji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

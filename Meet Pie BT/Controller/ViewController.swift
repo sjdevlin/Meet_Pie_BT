@@ -14,12 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var MeetTableView: UITableView!
 
     var blueTableData : [MessageStructure.Main] = [
-        MessageStructure.Main(memNum: 0,angle: 0,talking: 0,numTurns: 0, freq: 0, totalTalk: 0),
-        MessageStructure.Main(memNum: 0,angle: 0,talking: 0,numTurns: 0, freq: 0,totalTalk: 0),
-        MessageStructure.Main(memNum: 0,angle: 0,talking: 0,numTurns: 0, freq: 0,totalTalk: 0),
-        MessageStructure.Main(memNum: 0,angle: 0,talking: 0,numTurns: 0, freq: 0, totalTalk: 0),
-        MessageStructure.Main(memNum: 0,angle: 0,talking: 0,numTurns: 0, freq: 0,totalTalk: 0),
-        MessageStructure.Main(memNum: 0,angle: 0,talking: 0,numTurns: 0, freq: 0,totalTalk: 0)
+        MessageStructure.Main(mN: 0,a: 0,t: 0,nT: 0, f: 0, tT: 0),
+        MessageStructure.Main(mN: 0,a: 0,t: 0,nT: 0, f: 0,tT: 0),
+        MessageStructure.Main(mN: 0,a: 0,t: 0,nT: 0, f: 0,tT: 0),
+        MessageStructure.Main(mN: 0,a: 0,t: 0,nT: 0, f: 0, tT: 0),
+        MessageStructure.Main(mN: 0,a: 0,t: 0,nT: 0, f: 0,tT: 0),
+        MessageStructure.Main(mN: 0,a: 0,t: 0,nT: 0, f: 0,tT: 0)
     ]
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
         bData = BTData()
         bData.delegate = self
-
+ 
         MeetTableView.delegate = self
         MeetTableView.dataSource = self
 
@@ -47,15 +47,15 @@ class ViewController: UIViewController {
 
             // this where we update the chart
             
-            meetingTimeLabel.text = String(Message.totalMeetingTime)
+            meetingTimeLabel.text = String(Message.tMT)
             
-            for index in 0..<Message.message.count {
-                blueTableData[index].memNum = Message.message[index].memNum
-                blueTableData[index].angle = Message.message[index].angle
-                blueTableData[index].talking = Message.message[index].talking
-                blueTableData[index].freq = Message.message[index].freq
-                blueTableData[index].numTurns = Message.message[index].numTurns
-                blueTableData[index].totalTalk = Message.message[index].totalTalk
+            for index in 0..<Message.m.count {
+                blueTableData[index].mN = Message.m[index].mN
+                blueTableData[index].a = Message.m[index].a
+                blueTableData[index].t = Message.m[index].t
+                blueTableData[index].f = Message.m[index].f
+                blueTableData[index].nT = Message.m[index].nT
+                blueTableData[index].tT = Message.m[index].tT
 
         }
       DispatchQueue.main.async {
@@ -74,12 +74,12 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! BlueCell
-        cell.cellMemNum.text = String(blueTableData[indexPath.row].memNum)
-        cell.cellAngle.text = String(blueTableData[indexPath.row].angle)
-        cell.cellTalking.text = String(blueTableData[indexPath.row].talking)
-        cell.cellNumTurns.text = String(blueTableData[indexPath.row].numTurns)
-        cell.cellFreq.text = String(blueTableData[indexPath.row].freq)
-        cell.cellTotalTalk.text = String(blueTableData[indexPath.row].totalTalk)
+        cell.cellMemNum.text = String(blueTableData[indexPath.row].mN)
+        cell.cellAngle.text = String(blueTableData[indexPath.row].a)
+        cell.cellTalking.text = String(blueTableData[indexPath.row].t)
+        cell.cellNumTurns.text = String(blueTableData[indexPath.row].nT)
+        cell.cellFreq.text = String(blueTableData[indexPath.row].f)
+        cell.cellTotalTalk.text = String(blueTableData[indexPath.row].tT)
         return cell
     }
 }

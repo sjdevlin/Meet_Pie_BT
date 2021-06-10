@@ -18,7 +18,7 @@ class BTData: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var centralManager: CBCentralManager!
     var myPeripheral: CBPeripheral!
     var meetingData: MessageStructure = MessageStructure()
-    // make sure delegate for receioved data is there
+    // make sure delegate for received data is there
     weak var delegate: MessageModelDelegate?
     
     override init(){
@@ -28,13 +28,11 @@ class BTData: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
-            print("BLE powered on")
-            // Turned on
-            central.scanForPeripherals(withServices: [K.MeetPieCBUUID], options: nil)
+            central.scanForPeripherals(withServices: nil, options: nil)
+//            central.scanForPeripherals(withServices: , options: nil)
         }
         else {
             print("Something wrong with BLE")
-            // Not on, but can have different issues
         }
     }
     
@@ -68,7 +66,7 @@ class BTData: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         for characteristic in characteristics {
             if characteristic.properties.contains(.notify) {
-                print("\(characteristic.uuid): properties contains .notify")
+                print("\(characteristic.uuid): has notify")
                 peripheral.setNotifyValue(true, for: characteristic)
             }
         }
@@ -77,26 +75,30 @@ class BTData: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         switch characteristic.uuid {
-        case K.MeetPieDataNotifyCBUUID:
-            let data = characteristic.value!
+        case K.MeetPieDataCBUUID:
+   //         peripheral.readValue(for: characteristic)
+            let chardata = characteristic.value!
+            print ("char data:")
+//            print (chardata)
+            //let ASCIIstring = NSString(data: chardata, encoding: String.Encoding.utf8.rawValue)
             let str = String(decoding: characteristic.value!, as: UTF8.self)
             print (str)
             let decoder = JSONDecoder()
             
             do{
-                let decodedData = try decoder.decode(MessageStructure.self, from: data)
-                meetingData.timeStamp = decodedData.timeStamp
-                meetingData.totalMeetingTime = decodedData.totalMeetingTime
-                for index in 0..<decodedData.message.count {
-                    if index + 1 > meetingData.message.count {
-                        meetingData.message.append(MessageStructure.Main())
+                let decodedData = try decoder.decode(MessageStructure.self, from: chardata)
+//                meetingData.timeStamp = decodedData.timeStamp
+                meetingData.tMT = decodedData.tMT
+                for index in 0..<decodedData.m.count {
+                    if index + 1 > meetingData.m.count {
+                        meetingData.m.append(MessageStructure.Main())
                     }
-                    meetingData.message[index].memNum = decodedData.message[index].memNum
-                    meetingData.message[index].angle = decodedData.message[index].angle
-                    meetingData.message[index].talking = decodedData.message[index].talking
-                    meetingData.message[index].numTurns = decodedData.message[index].numTurns
-                    meetingData.message[index].freq = decodedData.message[index].freq
-                    meetingData.message[index].totalTalk = decodedData.message[index].totalTalk
+                    meetingData.m[index].mN = decodedData.m[index].mN
+                    meetingData.m[index].a = decodedData.m[index].a
+                    meetingData.m[index].t = decodedData.m[index].t
+                    meetingData.m[index].nT = decodedData.m[index].nT
+                    meetingData.m[index].f = decodedData.m[index].f
+                    meetingData.m[index].tT = decodedData.m[index].tT
                 }
             }
             catch let jsonError as NSError {
